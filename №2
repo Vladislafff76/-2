@@ -1,0 +1,9 @@
+def swap_values(link_list, k):
+    if k < 1 or k > len(link_list):
+    return
+
+first = link_list[0]
+second = link_list[-k]
+
+link_list[0] = second
+link_list[-k] = first
