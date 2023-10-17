@@ -67,25 +67,48 @@ def __add__(self, other):
 def __setitem__(self, key, value):
     if key < 0 or key >= self.length:
         raise IndexError("list index out of range")
-
-current = self.head
-for i in range(key):
-    current = current.next
-
-current.data = value
+        current = self.head
+        for i in range(key):
+            current = current.next
+            current.data = value
+            
 def __len__(self):
         return self.length
 
 def __str__(self):
         result = "("
         current = self.head
-while current is not None:
-        result += str(current.data)
-if current.next is not None:
-        result += " -> "
-        current = current.next
-        result += ")"
-        return result
-    
+        while current is not None:
+            result += str(current.data)
+        if current.next is not None:
+            result += " -> "
+            current = current.next
+            result += ")"
+
+
 def __repr__(self):
-        return "LinkedList" + str(tuple(self))
+    return "LinkedList" + str(tuple(self))
+
+l1 = LinkedList(1, 2, 3)
+print(l1) 
+
+l1.add_forward(0)
+print(l1) 
+
+l1.add_back(4)
+print(l1) 
+
+value = l1.pop()
+print(value) 
+print(l1) 
+
+l2 = LinkedList(4, 5)
+l3 = l1 + l2
+print(l3) 
+
+print(l3[1]) 
+
+l3[1] = 6
+print(l3) 
+
+print(len(l3))
