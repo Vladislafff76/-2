@@ -1,0 +1,91 @@
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.next = None
+
+class LinkedList:
+    def __init__(self, *args):
+        self.head = None
+        self.tail = None
+        self.length = 0
+
+    def add_forward(self, el):
+        new_node = Node(el)
+        if self.head is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            new_node.next = self.head
+            self.head = new_node
+            self.length += 1
+
+    def add_back(self, el):
+        new_node = Node(el)
+        if self.tail is None:
+            self.head = new_node
+            self.tail = new_node
+        else:
+            self.tail.next = new_node
+            self.tail = new_node
+            self.length += 1
+
+    def pop(self, index=0):
+        if self.head is None:
+            raise IndexError("pop from empty list")
+        if index == 0:
+            value = self.head.data
+            self.head = self.head.next
+        else:
+            current = self.head
+            for i in range(index - 1):
+                if current.next is None:
+                    raise IndexError("pop index out of range")
+                    current = current.next
+                if current.next is None:
+                        raise IndexError("pop index out of range")
+                        value = current.next.data
+                        current.next = current.next.next
+                        self.length -= 1
+                        return value
+
+def __add__(self, other):
+    if not isinstance(other, LinkedList):
+            raise TypeError("can only concatenate LinkedList to LinkedList")
+            if self.tail is not None:
+                self.tail.next = other.head # Объединяем два списка
+                new_list.tail = other.tail # Обновляем конец нового списка
+                return new_list
+    
+    def __getitem__(self, index):
+        if index < 0 or index >= self.length:
+            raise IndexError("list index out of range")
+            current = self.head
+            for i in range(index):
+                current = current.next
+                return current.data
+
+def __setitem__(self, key, value):
+    if key < 0 or key >= self.length:
+        raise IndexError("list index out of range")
+
+current = self.head
+for i in range(key):
+    current = current.next
+
+current.data = value
+def __len__(self):
+        return self.length
+
+def __str__(self):
+        result = "("
+        current = self.head
+while current is not None:
+        result += str(current.data)
+if current.next is not None:
+        result += " -> "
+        current = current.next
+        result += ")"
+        return result
+    
+def __repr__(self):
+        return "LinkedList" + str(tuple(self))
