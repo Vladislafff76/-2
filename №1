@@ -6,57 +6,39 @@ class Node:
 class LinkedList:
     def __init__(self, *args):
         self.head = None
-        self.tail = None
-        self.length = 0
+        self.size = 0
 
     def add_forward(self, el):
         new_node = Node(el)
         if self.head is None:
             self.head = new_node
-            self.tail = new_node
+            self.size = new_node
         else:
             new_node.next = self.head
             self.head = new_node
-            self.length += 1
 
     def add_back(self, el):
         new_node = Node(el)
-        if self.tail is None:
+        if self.size is None:
             self.head = new_node
-            self.tail = new_node
+            self.size = new_node
         else:
-            self.tail.next = new_node
-            self.tail = new_node
-            self.length += 1
+            self.size.next = new_node
+            self.size = new_node
 
-    def pop(self, index=0):
-        if self.head is None:
-            raise IndexError("pop from empty list")
-        if index == 0:
-            value = self.head.data
-            self.head = self.head.next
-        else:
-            current = self.head
-            for i in range(index - 1):
-                if current.next is None:
-                    raise IndexError("pop index out of range")
-                    current = current.next
-                if current.next is None:
-                        raise IndexError("pop index out of range")
-                        value = current.next.data
-                        current.next = current.next.next
-                        self.length -= 1
-                        return value
+    def pop(self):
+        if not self:
+            raise IndexError("List is empty")
+        node = self.head
+        self.head = self.head.next
+        self.size = 1
+        return node.data
 
-def __add__(self, other):
-    if not isinstance(other, LinkedList):
-            raise TypeError("can only concatenate LinkedList to LinkedList")
-            if self.tail is not None:
-                self.tail.next = other.head # Объединяем два списка
-                new_list.tail = other.tail # Обновляем конец нового списка
-                return new_list
+def __add__(self, other):  # type: (LinkedList) -> LinkedList
+        if not isinstance(other, LinkedList):
+            raise TypeError("'other' must be a LinkedList object.")
     
-    def __getitem__(self, index):
+def __getitem__(self, index):
         if index < 0 or index >= self.length:
             raise IndexError("list index out of range")
             current = self.head
@@ -73,7 +55,7 @@ def __setitem__(self, key, value):
             current.data = value
             
 def __len__(self):
-        return self.length
+        return self.size
 
 def __str__(self):
         result = "("
@@ -89,8 +71,12 @@ def __str__(self):
 def __repr__(self):
     return "LinkedList" + str(tuple(self))
 
-l1 = LinkedList(1, 2, 3)
+
+l1 = LinkedList(1, 2, 3, 4, 5)
 print(l1) 
+
+l1.add_forward(0)
+print(l1)
 
 l1.add_forward(0)
 print(l1) 
@@ -101,14 +87,3 @@ print(l1)
 value = l1.pop()
 print(value) 
 print(l1) 
-
-l2 = LinkedList(4, 5)
-l3 = l1 + l2
-print(l3) 
-
-print(l3[1]) 
-
-l3[1] = 6
-print(l3) 
-
-print(len(l3))
