@@ -1,9 +1,18 @@
-def swap_values(link_list, k):
-    if k < 1 or k > len(link_list):
-    return
+def swap_values(llist, k):
+    if k < 0 or k >= len(llist):
+        raise IndexError('Index out of range')
 
-first = link_list[0]
-second = link_list[-k]
+    if k == 0 or k == len(llist) - 1:
+        return llist
 
-link_list[0] = second
-link_list[-k] = first
+    # Находим k-ый элемент с начала
+    first_element = llist[k-1]
+    print(first_element)
+    # Находим k-ый элемент с конца
+    last_element = llist[len(llist) - k ]
+    print(last_element)
+    # Меняем значения местами
+    llist[k-1] = last_element
+    llist[len(llist) - k ] = first_element
+
+    return llist
