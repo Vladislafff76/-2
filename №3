@@ -1,15 +1,19 @@
 def alternating_split(link_list):
-    if len(link_list) < 2:
-        return (link_list, LinkedList()) 
-
-list1 = LinkedList()
-list2 = LinkedList()
-
-current = link_list.head
-while current is not None:
-    list1.add_back(current.data)
-    current = current.next
-if current is not None:
-    list2.add_back(current.data)
-    current = current.next
-    return (list1, list2)
+    if len(link_list) == 0:
+        return None, None
+    
+    if len(link_list) == 1:
+        return link_list, None
+    
+    # Создаем два новых списка
+    list1 = LinkedList()
+    list2 = LinkedList()
+    
+    # Чередуем элементы из исходного списка
+    for i in range(len(link_list)):
+        if i % 2 == 0:
+            list1.add_back(link_list[i])
+        else:
+            list2.add_back(link_list[i])
+    
+    return list1, list2
