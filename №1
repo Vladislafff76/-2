@@ -98,5 +98,5 @@ class LinkedList:
         while curr_node:
             nodes.append(str(curr_node.head))
             curr_node = curr_node.next
-        wtf='LinkedList'+'(' + ', '.join(nodes) + ')'
-        return wtf
+        l ='LinkedList'+'(' + ', '.join(nodes) + ')'
+        return l
